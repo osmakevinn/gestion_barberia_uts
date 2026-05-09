@@ -1,0 +1,37 @@
+# ==========================================
+# GITIGNORE MEJORADO PARA PROYECTO UTS
+# ==========================================
+
+# --- Compilación (Basura que NetBeans genera) ---
+**/build/
+**/dist/
+*.class
+
+# --- Configuración de NetBeans ---
+# Bloqueamos lo privado de tu PC, pero permitimos que se suba lo necesario 
+# para que Franco pueda abrir el proyecto.
+**/nbproject/private/
+**/nbproject/Makefile-genesis.properties
+**/nbproject/Package-*.bash
+
+# --- Archivos de Paquetes y Logs ---
+*.log
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# --- Archivos de Sistema (Windows/Mac) ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Otros (BlueJ/Temporales) ---
+*.ctxt
+.mtj.tmp/
+
+# --- Base de Datos ---
+# NO agregues *.db aquí si quieres que tu archivo de base de datos
+# (visto en image_efb2d9.png) aparezca en GitHub.
