@@ -54,6 +54,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCitas = new javax.swing.JButton();
         btnServicios = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,6 +122,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnSalir.setBackground(new java.awt.Color(48, 47, 47));
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -143,7 +154,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnConfiguracion)))
+                        .addComponent(btnConfiguracion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnSalir)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -165,6 +179,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnServicios)
                 .addGap(18, 18, 18)
                 .addComponent(btnConfiguracion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -220,6 +236,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mostrarPanel(new PnlBarberos());
     }//GEN-LAST:event_btnBarberosActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+       int respuesta = javax.swing.JOptionPane.showConfirmDialog(
+            this, 
+            "¿Está seguro de que desea cerrar la sesión?", 
+            "Confirmar Salida", 
+            javax.swing.JOptionPane.YES_NO_OPTION, 
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+    );
+
+    if (respuesta == javax.swing.JOptionPane.YES_OPTION) {
+        System.exit(0); // Cierra completamente la aplicación
+    }
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,6 +281,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnServicios;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;
