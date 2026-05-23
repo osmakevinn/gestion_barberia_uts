@@ -70,7 +70,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnInicio.setBackground(new java.awt.Color(48, 47, 47));
         btnInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/home.png"))); // NOI18N
-        btnInicio.setText("  Inicio");
+        btnInicio.setText("   Inicio");
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
         btnBarberos.setBackground(new java.awt.Color(48, 47, 47));
         btnBarberos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -125,7 +130,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnSalir.setBackground(new java.awt.Color(48, 47, 47));
         btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
-        btnSalir.setText("Salir");
+        btnSalir.setText("   Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -249,6 +254,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         System.exit(0); // Cierra completamente la aplicación
     }
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
