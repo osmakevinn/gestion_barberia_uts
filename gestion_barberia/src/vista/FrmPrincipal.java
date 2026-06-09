@@ -18,11 +18,39 @@ public class FrmPrincipal extends javax.swing.JFrame {
      * Creates new form FrmPrincipal
      */
     public FrmPrincipal() {
-        initComponents();
+        initComponents(); // Esto lo dejas tal cual
         setTitle("Gestión Barberia");
+
+        // --- MEJORAS VISUALES PREMIUM ---
+        btnInicio.setContentAreaFilled(false);
+        btnBarberos.setContentAreaFilled(false);
+        btnClientes.setContentAreaFilled(false);
+        btnCitas.setContentAreaFilled(false);
+        btnServicios.setContentAreaFilled(false);
+        btnConfiguracion.setContentAreaFilled(false);
+        btnSalir.setContentAreaFilled(false);
+
+        btnInicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBarberos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnClientes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCitas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnServicios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnConfiguracion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         
-        
+        // Aplicamos el formato plano
+        configurarEstiloMenu(btnInicio);
+        configurarEstiloMenu(btnBarberos);
+        configurarEstiloMenu(btnClientes);
+        configurarEstiloMenu(btnCitas);
+        configurarEstiloMenu(btnServicios);
+        configurarEstiloMenu(btnConfiguracion);
+        configurarEstiloMenu(btnSalir);
+
         mostrarPanel(new PnlInicio());
+        
+        // Dejamos marcado solo el inicio al arrancar
+        btnInicio.setSelected(true);
     }
         
     private void mostrarPanel(JPanel p){
@@ -33,7 +61,71 @@ public class FrmPrincipal extends javax.swing.JFrame {
             content.add(p, java.awt.BorderLayout.CENTER);
             content.revalidate();
             content.repaint();    
-    }          
+    }
+    
+    
+    private void configurarEstiloMenu(javax.swing.JButton boton) {
+
+        java.awt.Color colorNormal = new java.awt.Color(48, 47, 47);
+        java.awt.Color colorHover = new java.awt.Color(70, 70, 70);
+        java.awt.Color colorSeleccionado = new java.awt.Color(90, 90, 90);
+
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(false);
+        boton.setContentAreaFilled(true);
+        boton.setOpaque(true);
+
+        boton.setBackground(colorNormal);
+        boton.setForeground(java.awt.Color.WHITE);
+
+        // EFECTO HOVER
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+
+                if (!boton.isSelected()) {
+                    boton.setBackground(colorHover);
+                }
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+
+                if (!boton.isSelected()) {
+                    boton.setBackground(colorNormal);
+                }
+            }
+        });
+
+        // EFECTO SELECCIONADO
+        boton.addActionListener(e -> {
+
+            resetearFormatoBotones();
+
+            btnInicio.setBackground(colorNormal);
+            btnBarberos.setBackground(colorNormal);
+            btnClientes.setBackground(colorNormal);
+            btnCitas.setBackground(colorNormal);
+            btnServicios.setBackground(colorNormal);
+            btnConfiguracion.setBackground(colorNormal);
+            btnSalir.setBackground(colorNormal);
+
+            boton.setSelected(true);
+            boton.setBackground(colorSeleccionado);
+        });
+    }
+
+    private void resetearFormatoBotones() {
+
+        btnInicio.setSelected(false);
+        btnBarberos.setSelected(false);
+        btnClientes.setSelected(false);
+        btnCitas.setSelected(false);
+        btnServicios.setSelected(false);
+        btnConfiguracion.setSelected(false);
+        btnSalir.setSelected(false);
+    }
     
 
     /**
@@ -71,6 +163,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/home.png"))); // NOI18N
         btnInicio.setText("   Inicio");
+        btnInicio.setSelected(true);
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInicioActionPerformed(evt);
@@ -81,6 +174,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnBarberos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnBarberos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hairdresser.png"))); // NOI18N
         btnBarberos.setText("   Gestión Barberos");
+        btnBarberos.setSelected(true);
         btnBarberos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBarberosActionPerformed(evt);
@@ -91,6 +185,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/client.png"))); // NOI18N
         btnClientes.setText("   Clientes");
+        btnClientes.setSelected(true);
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientesActionPerformed(evt);
@@ -101,6 +196,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCitas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/schedule.png"))); // NOI18N
         btnCitas.setText("   Citas");
+        btnCitas.setSelected(true);
         btnCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCitasActionPerformed(evt);
@@ -111,6 +207,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnServicios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/barber.png"))); // NOI18N
         btnServicios.setText("   Servicios");
+        btnServicios.setSelected(true);
         btnServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnServiciosActionPerformed(evt);
@@ -121,6 +218,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnConfiguracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cogwheel.png"))); // NOI18N
         btnConfiguracion.setText("   Configuración");
+        btnConfiguracion.setSelected(true);
         btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguracionActionPerformed(evt);
@@ -131,6 +229,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
         btnSalir.setText("   Salir");
+        btnSalir.setSelected(true);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -195,11 +294,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 775, Short.MAX_VALUE)
+            .addGap(0, 813, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
+            .addGap(0, 752, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,9 +307,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,22 +320,23 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
+        mostrarPanel(new PnlClientes());
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
-        // TODO add your handling code here:
+        mostrarPanel(new PnlCitas());
     }//GEN-LAST:event_btnCitasActionPerformed
 
     private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
-        // TODO add your handling code here:
+        mostrarPanel(new PnlServicios());
     }//GEN-LAST:event_btnServiciosActionPerformed
 
     private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
-       
+       mostrarPanel(new PnlConfiguracion());
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
     private void btnBarberosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarberosActionPerformed
+        resetearFormatoBotones(); 
         mostrarPanel(new PnlBarberos());
     }//GEN-LAST:event_btnBarberosActionPerformed
 
@@ -256,33 +355,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        // TODO add your handling code here:
+        resetearFormatoBotones(); // Resetea todos a transparentes
+        mostrarPanel(new PnlInicio()); // Carga tu panel de inicio
     }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmPrincipal().setVisible(true));
+    try {
+
+        com.formdev.flatlaf.FlatDarkLaf.setup();
+
+    } catch(Exception ex) {
+
+        System.err.println("Error al cargar FlatLaf");
+
     }
+
+    java.awt.EventQueue.invokeLater(() -> {
+        new FrmPrincipal().setVisible(true);
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBarberos;

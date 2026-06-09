@@ -86,4 +86,20 @@ public class BarberosDAO {
             return 0;
         }
     } 
+    
+    public int totalClientes() {
+        int total = 0;
+        try {
+            con = cn.conectar();
+            String sql = "SELECT COUNT(*) FROM clientes";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return total;
+    }
 }
