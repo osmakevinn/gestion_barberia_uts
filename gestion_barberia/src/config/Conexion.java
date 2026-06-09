@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author jeanf
  */
 public class Conexion {
-    private static final String URL = "jdbc:sqlite:C:/drive/POO/gestion_barberia/proyecto_barberia.db";
+    private static final String URL = "jdbc:sqlite:proyecto_barberia.db";
 
     public static Connection conectar() {
         Connection con = null;
@@ -27,3 +27,4 @@ public class Conexion {
         return con;
     }
 }
+    

@@ -3,18 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package vista;
+import Metodos.MetodosBarberos;
 
 /**
  *
  * @author osmakevinn
  */
 public class PnlInicio extends javax.swing.JPanel {
-
-    /**
-     * Creates new form PnlInicio
-     */
+    
+    MetodosBarberos md = new MetodosBarberos();   
+    
+    
     public PnlInicio() {
+        
         initComponents();
+        estilos();
+        
+               
+        // ===== CARGAR DATOS DEL DASHBOARD =====
+        lblTotalClientes.setText(
+                String.valueOf(md.totalClientes())
+        );
+        
+    }
+    
+    private void estilos() {
+
+        // ===== ESTILO TARJETAS =====
+        pnlClientes.putClientProperty("FlatLaf.style", "arc:20");
+        pnlCitas.putClientProperty("FlatLaf.style", "arc:20");
+        pnlBarberos.putClientProperty("FlatLaf.style", "arc:20");
+        pnlServicios.putClientProperty("FlatLaf.style", "arc:20");
+
+        // ===== COLORES =====
+        pnlClientes.setBackground(new java.awt.Color(45, 45, 45));
+        pnlCitas.setBackground(new java.awt.Color(45, 45, 45));
+        pnlBarberos.setBackground(new java.awt.Color(45, 45, 45));
+        pnlServicios.setBackground(new java.awt.Color(45, 45, 45));
+
     }
 
     /**
@@ -26,19 +52,251 @@ public class PnlInicio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlPrincipal = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        pnlClientes = new javax.swing.JPanel();
+        lblTituloClientes = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblTotalClientes = new javax.swing.JLabel();
+        pnlCitas = new javax.swing.JPanel();
+        lblTituloCitas = new javax.swing.JLabel();
+        lblTotalCitas = new javax.swing.JLabel();
+        pnlBarberos = new javax.swing.JPanel();
+        lblTituloBarberos = new javax.swing.JLabel();
+        lblTotalBarberos = new javax.swing.JLabel();
+        pnlServicios = new javax.swing.JPanel();
+        lblTituloServicios = new javax.swing.JLabel();
+        lblTotalServicios = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+
+        pnlPrincipal.setBackground(new java.awt.Color(35, 35, 35));
+        pnlPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inicio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("NSimSun", 0, 24)); // NOI18N
+        jLabel5.setText("Bienvenido, ");
+
+        pnlClientes.setBackground(new java.awt.Color(45, 45, 45));
+        pnlClientes.setPreferredSize(new java.awt.Dimension(200, 150));
+
+        lblTituloClientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloClientes.setText("Clientes");
+
+        lblTotalClientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotalClientes.setText("0");
+
+        javax.swing.GroupLayout pnlClientesLayout = new javax.swing.GroupLayout(pnlClientes);
+        pnlClientes.setLayout(pnlClientesLayout);
+        pnlClientesLayout.setHorizontalGroup(
+            pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlClientesLayout.createSequentialGroup()
+                .addGroup(pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlClientesLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblTituloClientes))
+                    .addGroup(pnlClientesLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel2))
+                    .addGroup(pnlClientesLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(lblTotalClientes)))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        pnlClientesLayout.setVerticalGroup(
+            pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloClientes)
+                .addGap(18, 18, 18)
+                .addComponent(lblTotalClientes)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel2)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        pnlCitas.setBackground(new java.awt.Color(45, 45, 45));
+        pnlCitas.setPreferredSize(new java.awt.Dimension(200, 150));
+
+        lblTituloCitas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloCitas.setText("Citas hoy");
+
+        lblTotalCitas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotalCitas.setText("0");
+
+        javax.swing.GroupLayout pnlCitasLayout = new javax.swing.GroupLayout(pnlCitas);
+        pnlCitas.setLayout(pnlCitasLayout);
+        pnlCitasLayout.setHorizontalGroup(
+            pnlCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCitasLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(lblTituloCitas)
+                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(pnlCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlCitasLayout.createSequentialGroup()
+                    .addGap(63, 63, 63)
+                    .addComponent(lblTotalCitas)
+                    .addContainerGap(64, Short.MAX_VALUE)))
+        );
+        pnlCitasLayout.setVerticalGroup(
+            pnlCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCitasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloCitas)
+                .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(pnlCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlCitasLayout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(lblTotalCitas)
+                    .addContainerGap(48, Short.MAX_VALUE)))
+        );
+
+        pnlBarberos.setBackground(new java.awt.Color(45, 45, 45));
+        pnlBarberos.setPreferredSize(new java.awt.Dimension(200, 150));
+
+        lblTituloBarberos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloBarberos.setText("Barberos");
+
+        lblTotalBarberos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotalBarberos.setText("0");
+
+        javax.swing.GroupLayout pnlBarberosLayout = new javax.swing.GroupLayout(pnlBarberos);
+        pnlBarberos.setLayout(pnlBarberosLayout);
+        pnlBarberosLayout.setHorizontalGroup(
+            pnlBarberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBarberosLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(lblTituloBarberos)
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(pnlBarberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBarberosLayout.createSequentialGroup()
+                    .addGap(63, 63, 63)
+                    .addComponent(lblTotalBarberos)
+                    .addContainerGap(64, Short.MAX_VALUE)))
+        );
+        pnlBarberosLayout.setVerticalGroup(
+            pnlBarberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBarberosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloBarberos)
+                .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(pnlBarberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBarberosLayout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(lblTotalBarberos)
+                    .addContainerGap(48, Short.MAX_VALUE)))
+        );
+
+        pnlServicios.setBackground(new java.awt.Color(45, 45, 45));
+        pnlServicios.setPreferredSize(new java.awt.Dimension(200, 150));
+
+        lblTituloServicios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTituloServicios.setText("Servicios");
+
+        lblTotalServicios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotalServicios.setText("0");
+
+        javax.swing.GroupLayout pnlServiciosLayout = new javax.swing.GroupLayout(pnlServicios);
+        pnlServicios.setLayout(pnlServiciosLayout);
+        pnlServiciosLayout.setHorizontalGroup(
+            pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlServiciosLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lblTituloServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(34, 34, 34))
+            .addGroup(pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlServiciosLayout.createSequentialGroup()
+                    .addGap(67, 67, 67)
+                    .addComponent(lblTotalServicios)
+                    .addContainerGap(67, Short.MAX_VALUE)))
+        );
+        pnlServiciosLayout.setVerticalGroup(
+            pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlServiciosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTituloServicios)
+                .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlServiciosLayout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(lblTotalServicios)
+                    .addContainerGap(48, Short.MAX_VALUE)))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Próximas citas:");
+
+        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
+        pnlPrincipal.setLayout(pnlPrincipalLayout);
+        pnlPrincipalLayout.setHorizontalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(pnlBarberos, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(pnlServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
+                        .addComponent(pnlClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1))
+                .addContainerGap(427, Short.MAX_VALUE))
+        );
+        pnlPrincipalLayout.setVerticalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel5)
+                .addGap(49, 49, 49)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlBarberos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblTituloBarberos;
+    private javax.swing.JLabel lblTituloCitas;
+    private javax.swing.JLabel lblTituloClientes;
+    private javax.swing.JLabel lblTituloServicios;
+    private javax.swing.JLabel lblTotalBarberos;
+    private javax.swing.JLabel lblTotalCitas;
+    private javax.swing.JLabel lblTotalClientes;
+    private javax.swing.JLabel lblTotalServicios;
+    private javax.swing.JPanel pnlBarberos;
+    private javax.swing.JPanel pnlCitas;
+    private javax.swing.JPanel pnlClientes;
+    private javax.swing.JPanel pnlPrincipal;
+    private javax.swing.JPanel pnlServicios;
     // End of variables declaration//GEN-END:variables
 }

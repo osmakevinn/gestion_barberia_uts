@@ -17,13 +17,13 @@ import modelo.Barbero;
  *
  * @author jeanf
  */
-public class MetdosBarberos {
+public class MetodosBarberos {
     BarberosDAO dao = new BarberosDAO();
 
     public void llenarTabla(JTable tabla, String busqueda) {
         List<Barbero> lista = dao.listar(busqueda);
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        modelo.setRowCount(0); // Limpia la tabla antes de cargar
+        modelo.setRowCount(0); 
         
         for (Barbero b : lista) {
             Object[] fila = {
@@ -93,4 +93,10 @@ public class MetdosBarberos {
             est.setSelectedIndex(0);
         }
     }
+    
+    public int totalClientes() {
+
+    return dao.totalClientes();
+
+}
 }

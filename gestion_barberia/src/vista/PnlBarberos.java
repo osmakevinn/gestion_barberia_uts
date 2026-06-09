@@ -4,7 +4,9 @@
  */
 package vista;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 
 
 /**
@@ -12,13 +14,52 @@ import javax.swing.JOptionPane;
  * @author osmakevinn
  */
 public class PnlBarberos extends javax.swing.JPanel {
-Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
+Metodos.MetodosBarberos mBarberos = new Metodos.MetodosBarberos();
     /**
      * Creates new form PnlBarberos
      */
     public PnlBarberos() {
         initComponents();
+        estilos();
         mBarberos.llenarTabla(tblBarberos, "");
+        
+    }
+    
+    private void estilos(){
+        
+        //Centrar tabla
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        
+        centerRenderer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        for (int i = 0; i < tblBarberos.getColumnCount(); i++){
+            tblBarberos.getColumnModel().getColumn(i)
+            .setCellRenderer(centerRenderer);
+        
+        }    
+        
+        //Centrar Headers
+        ((DefaultTableCellRenderer)
+        tblBarberos.getTableHeader()
+        .getDefaultRenderer())
+        .setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        //Mejorar tablas
+        tblBarberos.setRowHeight(35);
+        tblBarberos.setShowVerticalLines(false);
+        tblBarberos.setSelectionBackground(new Color(70,110,180));
+        tblBarberos.setSelectionForeground(Color.WHITE);
+        
+        //Botones Modernos
+        txtNombre.putClientProperty("JComponent.roundRect", true);
+        txtComision.putClientProperty("JComponent.roundRect", true);
+        txtBuscar.putClientProperty("JComponent.roundRect", true);
+        
+        //Placeholders
+        txtBuscar.putClientProperty(
+                "JTextField.placeholderText",
+                "Buscar barbero..."
+        );
         
     }
 
@@ -45,28 +86,29 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
         cbxEstado = new javax.swing.JComboBox<>();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnNuevo = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GESTIÓN BARBEROS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
-        tblBarberos.setForeground(new java.awt.Color(102, 102, 102));
+        tblBarberos.setForeground(new java.awt.Color(255, 255, 255));
         tblBarberos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Comisión %", "Estado", "Acciones"
+                "ID", "Nombre", "Comisión %", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -77,21 +119,25 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
                 return canEdit [columnIndex];
             }
         });
+        tblBarberos.setShowGrid(false);
+        tblBarberos.setShowHorizontalLines(true);
+        tblBarberos.setShowVerticalLines(true);
         tblBarberos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblBarberosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblBarberos);
+        tblBarberos.getAccessibleContext().setAccessibleName("");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("GESTIÓN BARBEROS");
 
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtBuscar.setForeground(new java.awt.Color(102, 102, 102));
+        txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtBuscar.setToolTipText("");
+        txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
@@ -113,13 +159,27 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Comisión %");
+        jLabel4.setText("Comisión (%)");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Estado");
 
-        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Activo", "Ocupado" }));
+        txtId.setEditable(false);
+        txtId.setEnabled(false);
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        cbxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Activo", "Inactivo" }));
         cbxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxEstadoActionPerformed(evt);
@@ -146,13 +206,13 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
             }
         });
 
-        btnNuevo.setBackground(new java.awt.Color(0, 153, 51));
-        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevo.setText("Nuevo");
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(0, 153, 51));
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -173,6 +233,7 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -181,59 +242,54 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
                             .addComponent(jLabel5))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtComision, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtComision, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                            .addComponent(cbxEstado, 0, 501, Short.MAX_VALUE)
+                            .addComponent(txtNombre)
+                            .addComponent(txtId))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnActualizar)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar)
+                    .addComponent(jLabel2))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtComision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel5))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnActualizar))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtComision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnEliminar))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnNuevo)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnLimpiar)))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminar)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGuardar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiar)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -308,7 +364,7 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
     }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (txtNombre.getText().isEmpty() || txtComision.getText().isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos (Nombre y Comisión)");
         return;
@@ -329,24 +385,32 @@ Metodos.MetdosBarberos mBarberos = new Metodos.MetdosBarberos();
    
         JOptionPane.showMessageDialog(this, "Error: La comisión debe ser un número (ejemplo: 15.0)");
     }
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
-    tblBarberos.clearSelection();
-    txtNombre.requestFocus();
+        mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
+        tblBarberos.clearSelection();
+        txtNombre.requestFocus();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
       mBarberos.llenarTabla(tblBarberos, txtBuscar.getText());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> cbxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
