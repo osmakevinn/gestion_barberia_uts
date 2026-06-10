@@ -92,7 +92,7 @@ Metodos.MetodosBarberos mBarberos = new Metodos.MetodosBarberos();
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GESTIÓN BARBEROS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
-        tblBarberos.setForeground(new java.awt.Color(255, 255, 255));
+        tblBarberos.setForeground(new java.awt.Color(0, 0, 0));
         tblBarberos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -119,6 +119,7 @@ Metodos.MetodosBarberos mBarberos = new Metodos.MetodosBarberos();
                 return canEdit [columnIndex];
             }
         });
+        tblBarberos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblBarberos.setShowGrid(false);
         tblBarberos.setShowHorizontalLines(true);
         tblBarberos.setShowVerticalLines(true);

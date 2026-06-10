@@ -4,6 +4,8 @@
  */
 package vista;
 
+import Metodos.Mlogin;
+import javax.swing.JOptionPane;
 /**
  *
  * @author osmakevinn
@@ -11,10 +13,8 @@ package vista;
 public class FrmLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
-
-    /**
-     * Creates new form FrmLogin
-     */
+private Mlogin mLogin = new Mlogin();
+   
     public FrmLogin() {
         initComponents();
     }
@@ -31,7 +31,7 @@ public class FrmLogin extends javax.swing.JFrame {
         FrmLogin = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        btnIngresar = new javax.swing.JToggleButton();
+        btnIniciarSesion = new javax.swing.JToggleButton();
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,12 +43,12 @@ public class FrmLogin extends javax.swing.JFrame {
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setToolTipText("");
 
-        btnIngresar.setBackground(new java.awt.Color(0, 132, 255));
-        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresar.setText("Iniciar Sesión");
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSesion.setBackground(new java.awt.Color(0, 132, 255));
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion.setText("Iniciar Sesión");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+                btnIniciarSesionActionPerformed(evt);
             }
         });
 
@@ -70,7 +70,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addGroup(FrmLoginLayout.createSequentialGroup()
                         .addGap(229, 229, 229)
                         .addGroup(FrmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                             .addComponent(txtUsuario)
                             .addComponent(txtPassword))))
                 .addContainerGap(257, Short.MAX_VALUE))
@@ -85,7 +85,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96))
         );
 
@@ -107,18 +107,32 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         
-        String usuario = txtUsuario.getText().trim();
-        String password = new String(txtPassword.getPassword()).trim();
+     String usuario = txtUsuario.getText().trim();
+    String password = new String(txtPassword.getPassword()).trim();
 
-        if (usuario.isEmpty() || password.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos.", "Campos Vacíos", javax.swing.JOptionPane.WARNING_MESSAGE);
-            return; 
-        }
+    if (usuario.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
+        return;
+    }
 
-        System.out.println("Intentando ingresar con Usuario: " + usuario);
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    boolean acceso = mLogin.validarLogin(usuario, password);
+
+    if (acceso) {
+        JOptionPane.showMessageDialog(this, "Bienvenido al sistema");
+
+        FrmPrincipal principal = new FrmPrincipal();
+        principal.setVisible(true);
+
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+
+        txtPassword.setText("");
+        txtPassword.requestFocus();
+    }
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,15 +144,7 @@ public class FrmLogin extends javax.swing.JFrame {
             System.err.println("No se pudo inicializar FlatLaf: " + ex.getMessage());
         }
 
-        // 2. Ejecutamos la ventana del Login como la principal y centrada
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                FrmLogin login = new FrmLogin();
-                login.setLocationRelativeTo(null); // Centra la ventana
-                login.setVisible(true);
-            }
-        });
+       
         
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -162,7 +168,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FrmLogin;
-    private javax.swing.JToggleButton btnIngresar;
+    private javax.swing.JToggleButton btnIniciarSesion;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;

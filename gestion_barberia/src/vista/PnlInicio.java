@@ -100,7 +100,7 @@ public class PnlInicio extends javax.swing.JPanel {
                     .addGroup(pnlClientesLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(lblTotalClientes)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         pnlClientesLayout.setVerticalGroup(
             pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -1,37 +1,37 @@
-# ==========================================
-# GITIGNORE MEJORADO PARA PROYECTO UTS
-# ==========================================
+# ==============================
+# NetBeans / Java project
+# ==============================
 
-# --- Compilación (Basura que NetBeans genera) ---
-**/build/
-**/dist/
+# Compilación
+/build/
+/dist/
 *.class
 
-# --- Configuración de NetBeans ---
-# Bloqueamos lo privado de tu PC, pero permitimos que se suba lo necesario 
-# para que Franco pueda abrir el proyecto.
-**/nbproject/private/
-**/nbproject/Makefile-genesis.properties
-**/nbproject/Package-*.bash
+# NetBeans privado del usuario
+/nbproject/private/
 
-# --- Archivos de Paquetes y Logs ---
+# Logs
 *.log
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
 
-# --- Archivos de Sistema (Windows/Mac) ---
+# Sistema operativo
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# --- Otros (BlueJ/Temporales) ---
-*.ctxt
-.mtj.tmp/
+# Temporales
+*.tmp
+*.bak
+*.swp
 
-# --- Base de Datos ---
-# NO agregues *.db aquí si quieres que tu archivo de base de datos
-# (visto en image_efb2d9.png) aparezca en GitHub.
+# SQLite temporales
+*.db-journal
+*.db-shm
+*.db-wal
+
+# NO ignorar librerías .jar
+# Las librerías del proyecto deben ir en /lib/
+!/lib/
+!/lib/*.jar
+
+# NO ignorar la base de datos principal si el proyecto la necesita
+!proyecto_barberia.db

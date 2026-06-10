@@ -56,7 +56,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnIngresar" pref="167" max="32767" attributes="0"/>
+                              <Component id="btnIniciarSesion" pref="167" max="32767" attributes="0"/>
                               <Component id="txtUsuario" alignment="1" max="32767" attributes="0"/>
                               <Component id="txtPassword" max="32767" attributes="0"/>
                           </Group>
@@ -76,7 +76,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtPassword" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace pref="102" max="32767" attributes="0"/>
-                  <Component id="btnIngresar" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="btnIniciarSesion" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -96,7 +96,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="btnIngresar">
+        <Component class="javax.swing.JToggleButton" name="btnIniciarSesion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="84" red="0" type="rgb"/>
@@ -107,7 +107,7 @@
             <Property name="text" type="java.lang.String" value="Iniciar Sesi&#xf3;n"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIniciarSesionActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtPassword">
