@@ -56,11 +56,11 @@ public class PnlConfiguracion extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Cambio de contraseña:");
 
-        txtConfActual.setText("jPasswordField1");
-
-        txtConfNueva.setText("jPasswordField1");
-
-        txtConfConfirmar.setText("jPasswordField1");
+        txtConfNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConfNuevaActionPerformed(evt);
+            }
+        });
 
         btnActualizarPassword.setBackground(new java.awt.Color(51, 153, 255));
         btnActualizarPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -85,11 +85,11 @@ public class PnlConfiguracion extends javax.swing.JPanel {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))))
                         .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtConfNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtConfActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtConfConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(151, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtConfActual, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(txtConfNueva)
+                            .addComponent(txtConfConfirmar))))
+                .addContainerGap(141, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnActualizarPassword)
@@ -130,6 +130,10 @@ public class PnlConfiguracion extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtConfNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfNuevaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConfNuevaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

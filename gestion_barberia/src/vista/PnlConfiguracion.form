@@ -57,14 +57,14 @@
                               </Group>
                           </Group>
                           <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtConfNueva" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtConfActual" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtConfConfirmar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtConfActual" alignment="0" pref="100" max="32767" attributes="0"/>
+                              <Component id="txtConfNueva" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtConfConfirmar" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="151" max="32767" attributes="0"/>
+                  <EmptySpace pref="141" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
@@ -151,19 +151,13 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtConfActual">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtConfNueva">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtConfNuevaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtConfConfirmar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnActualizarPassword">
           <Properties>
