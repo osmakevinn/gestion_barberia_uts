@@ -1,21 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package vista;
 
-/**
- *
- * @author osmakevinn
- */
-public class PnlServicios extends javax.swing.JPanel {
+import Metodos.Mservicios;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form PnlServicios
-     */
-    public PnlServicios() {
-        initComponents();
+public class PnlServicios extends PanelCrudBase {
+
+private Mservicios mServicios = new Mservicios();
+
+public PnlServicios() {
+    initComponents();
+
+    cargarDatosIniciales();
+}
+
+@Override
+protected void cargarDatosIniciales() {
+ 
+    mServicios.llenarTabla(tblServicios);
+}
+
+    @Override
+    protected void limpiarFormulario() {
+        super.limpiarFormulario();
+
+        txtSerNombre.setText("");
+        txtSerPrecio.setText("");
+
+        tblServicios.clearSelection();
+        txtSerNombre.requestFocus();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,8 +47,8 @@ public class PnlServicios extends javax.swing.JPanel {
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        txtNombreServicio = new javax.swing.JTextField();
-        txtPrecio = new javax.swing.JTextField();
+        txtSerNombre = new javax.swing.JTextField();
+        txtSerPrecio = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServicios = new javax.swing.JTable();
 
@@ -105,6 +119,13 @@ public class PnlServicios extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblServicios.setShowHorizontalLines(true);
+        tblServicios.setShowVerticalLines(true);
+        tblServicios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblServiciosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblServicios);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -127,11 +148,11 @@ public class PnlServicios extends javax.swing.JPanel {
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNombreServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtSerPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -141,9 +162,9 @@ public class PnlServicios extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNombreServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtSerPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -167,79 +188,110 @@ public class PnlServicios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (txtNombre.getText().isEmpty() || txtComision.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos (Nombre y Comisión)");
-            return;
-        }
+     String nombre = txtSerNombre.getText().trim();
+    String precioTexto = txtSerPrecio.getText().trim();
 
-        try {
+    if (nombre.isEmpty() || precioTexto.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos");
+        return;
+    }
 
-            String nombre = txtNombre.getText();
-            double comision = Double.parseDouble(txtComision.getText());
-            String estado = cbxEstado.getSelectedItem().toString();
+    double precio;
 
-            mBarberos.registrarBarbero(nombre, comision, estado);
-            mBarberos.llenarTabla(tblBarberos, "");
+    try {
+        precio = Double.parseDouble(precioTexto);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El precio debe ser un número válido");
+        return;
+    }
 
-            mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
+    if (precio <= 0) {
+        JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero");
+        return;
+    }
 
-        } catch (NumberFormatException e) {
+    mServicios.registrarServicio(nombre, precio);
 
-            JOptionPane.showMessageDialog(this, "Error: La comisión debe ser un número (ejemplo: 15.0)");
-        }
+    cargarDatosIniciales();
+    limpiarFormulario();
+
+    JOptionPane.showMessageDialog(this, "Servicio registrado correctamente");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un barbero de la tabla");
-            return;
-        }
+     if (!haySeleccion()) {
+        JOptionPane.showMessageDialog(this, "Seleccione un servicio de la tabla");
+        return;
+    }
 
-        try {
+    String nombre = txtSerNombre.getText().trim();
+    String precioTexto = txtSerPrecio.getText().trim();
 
-            int id = Integer.parseInt(txtId.getText());
-            String nombre = txtNombre.getText();
-            double comision = Double.parseDouble(txtComision.getText());
-            String estado = cbxEstado.getSelectedItem().toString();
+    if (nombre.isEmpty() || precioTexto.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Complete todos los campos");
+        return;
+    }
 
-            mBarberos.actualizarBarbero(id, nombre, comision, estado);
-            mBarberos.llenarTabla(tblBarberos, "");
-            mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
+    double precio;
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error: La comisión debe ser un número válido");
-        }
+    try {
+        precio = Double.parseDouble(precioTexto);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El precio debe ser un número válido");
+        return;
+    }
+
+    if (precio <= 0) {
+        JOptionPane.showMessageDialog(this, "El precio debe ser mayor que cero");
+        return;
+    }
+
+    mServicios.actualizarServicio(idSeleccionado, nombre, precio);
+    JOptionPane.showMessageDialog(this, "Servicio actualizado correctamente");
+
+    cargarDatosIniciales();
+    limpiarFormulario();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un barbero de la tabla para eliminar");
-            return;
-        }
+       if (!haySeleccion()) {
+        JOptionPane.showMessageDialog(this, "Seleccione un servicio de la tabla");
+        return;
+    }
 
-        int id = Integer.parseInt(txtId.getText());
-        String nombre = txtNombre.getText();
-
-        int respuesta = JOptionPane.showConfirmDialog(this,
-            "¿Estás seguro de que quieres eliminar al barbero: " + nombre + "?",
-            "Confirmar Eliminación",
+    int respuesta = JOptionPane.showConfirmDialog(
+            this,
+            "¿Está seguro de eliminar este servicio?",
+            "Confirmar eliminación",
             JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+            JOptionPane.WARNING_MESSAGE
+    );
 
-        if (respuesta == JOptionPane.YES_OPTION) {
+    if (respuesta == JOptionPane.YES_OPTION) {
+        mServicios.eliminarServicio(idSeleccionado);
+        JOptionPane.showMessageDialog(this, "Servicio eliminado correctamente");
 
-            mBarberos.eliminarBarbero(id);
-
-            mBarberos.llenarTabla(tblBarberos, "");
-            mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
-        }
+        cargarDatosIniciales();
+        limpiarFormulario();
+    }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
-        tblBarberos.clearSelection();
-        txtNombre.requestFocus();
+       limpiarFormulario();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void tblServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServiciosMouseClicked
+          int fila = tblServicios.getSelectedRow();
+
+    if (fila == -1) {
+        return;
+    }
+
+    idSeleccionado = Integer.parseInt(tblServicios.getValueAt(fila, 0).toString());
+
+    txtSerNombre.setText(tblServicios.getValueAt(fila, 1).toString());
+    txtSerPrecio.setText(tblServicios.getValueAt(fila, 2).toString());
+    }//GEN-LAST:event_tblServiciosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -252,7 +304,7 @@ public class PnlServicios extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblServicios;
-    private javax.swing.JTextField txtNombreServicio;
-    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtSerNombre;
+    private javax.swing.JTextField txtSerPrecio;
     // End of variables declaration//GEN-END:variables
 }

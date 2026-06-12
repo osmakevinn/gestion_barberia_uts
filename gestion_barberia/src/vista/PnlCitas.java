@@ -1,8 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package vista;
+
+import javax.swing.JOptionPane;
+import com.toedter.calendar.JTextFieldDateEditor;
+import java.util.Date;
+import Metodos.Mcitas;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,12 +15,43 @@ package vista;
  */
 public class PnlCitas extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PnlCitas
-     */
+        private void configurarFecha() {
+    // Formato correcto para la fecha
+    jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
+    // Poner la fecha actual por defecto
+    jDateChooser1.setDate(new Date());
+
+    
+    JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateChooser1.getDateEditor();
+    editor.setEditable(false);
+}
+    private void cargarDatosIniciales() {
+    mCitas.cargarClientes(cbCitCliente);
+    mCitas.cargarBarberos(cbCitBarbero);
+    mCitas.cargarServicios(cbCitServicio);
+    mCitas.llenarTabla(jTable1);
+}
+     private Mcitas mCitas = new Mcitas();
+     private int idCitaSeleccionada = -1;
+   
     public PnlCitas() {
         initComponents();
+        configurarFecha();
+        cargarDatosIniciales();
+       
     }
+    
+    private void seleccionarComboPorId(javax.swing.JComboBox<String> combo, int id) {
+    for (int i = 0; i < combo.getItemCount(); i++) {
+        String item = combo.getItemAt(i);
+
+        if (item != null && item.startsWith(id + " - ")) {
+            combo.setSelectedIndex(i);
+            return;
+        }
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,9 +73,6 @@ public class PnlCitas extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -50,6 +83,7 @@ public class PnlCitas extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GESTIÓN CITAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        jPanel1.setOpaque(false);
 
         cbCitBarbero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,15 +110,11 @@ public class PnlCitas extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Estado:");
 
+        jDateChooser1.setForeground(new java.awt.Color(255, 255, 255));
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Fecha:");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Notas:");
 
         btnGuardar.setBackground(new java.awt.Color(0, 153, 51));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -137,6 +167,13 @@ public class PnlCitas extends javax.swing.JPanel {
                 "ID", "Cliente", "Barbero", "Servicio", "Fecha", "Hora", "Estado"
             }
         ));
+        jTable1.setShowHorizontalLines(true);
+        jTable1.setShowVerticalLines(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -164,14 +201,10 @@ public class PnlCitas extends javax.swing.JPanel {
                             .addComponent(cbCitServicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbCitEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(64, 64, 64))
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbCitEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -197,23 +230,17 @@ public class PnlCitas extends javax.swing.JPanel {
                     .addComponent(cbCitEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbCitBarbero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbCitServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(2, 2, 2)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCitBarbero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCitServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,81 +274,203 @@ public class PnlCitas extends javax.swing.JPanel {
     private void cbCitBarberoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCitBarberoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCitBarberoActionPerformed
-
+private void limpiarFormularioCita() {
+        idCitaSeleccionada = -1;
+    cbCitCliente.setSelectedIndex(0);
+    cbCitBarbero.setSelectedIndex(0);
+    cbCitServicio.setSelectedIndex(0);
+    cbCitEstado.setSelectedIndex(0);
+    jDateChooser1.setDate(new Date());
+    jTextField1.setText("");
+    jTable1.clearSelection();
+}
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (txtNombre.getText().isEmpty() || txtComision.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos (Nombre y Comisión)");
-            return;
-        }
+      int idCliente = obtenerIdCombo(cbCitCliente);
+    int idBarbero = obtenerIdCombo(cbCitBarbero);
+    int idServicio = obtenerIdCombo(cbCitServicio);
 
-        try {
+    Date fechaDate = jDateChooser1.getDate();
+    String hora = jTextField1.getText().trim();
+    String estado = cbCitEstado.getSelectedItem().toString();
 
-            String nombre = txtNombre.getText();
-            double comision = Double.parseDouble(txtComision.getText());
-            String estado = cbxEstado.getSelectedItem().toString();
+    if (idCliente == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un cliente");
+        return;
+    }
 
-            mBarberos.registrarBarbero(nombre, comision, estado);
-            mBarberos.llenarTabla(tblBarberos, "");
+    if (idBarbero == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un barbero");
+        return;
+    }
 
-            mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
+    if (idServicio == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un servicio");
+        return;
+    }
 
-        } catch (NumberFormatException e) {
+    if (fechaDate == null) {
+        JOptionPane.showMessageDialog(this, "Seleccione una fecha válida");
+        return;
+    }
 
-            JOptionPane.showMessageDialog(this, "Error: La comisión debe ser un número (ejemplo: 15.0)");
-        }
+    if (hora.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingrese la hora de la cita");
+        return;
+    }
+
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+    String fecha = formato.format(fechaDate);
+
+    mCitas.registrarCita(idCliente, idBarbero, idServicio, fecha, hora, estado);
+
+    JOptionPane.showMessageDialog(this, "Cita registrada correctamente");
+
+    mCitas.llenarTabla(jTable1);
+    limpiarFormularioCita();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un barbero de la tabla");
-            return;
-        }
+        if (idCitaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione una cita de la tabla para actualizar");
+        return;
+    }
 
-        try {
+    int idCliente = obtenerIdCombo(cbCitCliente);
+    int idBarbero = obtenerIdCombo(cbCitBarbero);
+    int idServicio = obtenerIdCombo(cbCitServicio);
 
-            int id = Integer.parseInt(txtId.getText());
-            String nombre = txtNombre.getText();
-            double comision = Double.parseDouble(txtComision.getText());
-            String estado = cbxEstado.getSelectedItem().toString();
+    Date fechaDate = jDateChooser1.getDate();
+    String hora = jTextField1.getText().trim();
+    String estado = cbCitEstado.getSelectedItem().toString();
 
-            mBarberos.actualizarBarbero(id, nombre, comision, estado);
-            mBarberos.llenarTabla(tblBarberos, "");
-            mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
+    if (idCliente == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un cliente");
+        return;
+    }
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error: La comisión debe ser un número válido");
-        }
+    if (idBarbero == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un barbero");
+        return;
+    }
+
+    if (idServicio == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione un servicio");
+        return;
+    }
+
+    if (fechaDate == null) {
+        JOptionPane.showMessageDialog(this, "Seleccione una fecha válida");
+        return;
+    }
+
+    if (hora.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingrese la hora de la cita");
+        return;
+    }
+
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+    String fecha = formato.format(fechaDate);
+
+    mCitas.actualizarCita(
+            idCitaSeleccionada,
+            idCliente,
+            idBarbero,
+            idServicio,
+            fecha,
+            hora,
+            estado
+    );
+
+    JOptionPane.showMessageDialog(this, "Cita actualizada correctamente");
+
+    mCitas.llenarTabla(jTable1);
+    limpiarFormularioCita();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (txtId.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un barbero de la tabla para eliminar");
-            return;
-        }
+      if (idCitaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(this, "Seleccione una cita de la tabla para eliminar");
+        return;
+    }
 
-        int id = Integer.parseInt(txtId.getText());
-        String nombre = txtNombre.getText();
-
-        int respuesta = JOptionPane.showConfirmDialog(this,
-            "¿Estás seguro de que quieres eliminar al barbero: " + nombre + "?",
-            "Confirmar Eliminación",
+    int respuesta = JOptionPane.showConfirmDialog(
+            this,
+            "¿Está seguro de eliminar esta cita?",
+            "Confirmar eliminación",
             JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+            JOptionPane.WARNING_MESSAGE
+    );
 
-        if (respuesta == JOptionPane.YES_OPTION) {
+    if (respuesta == JOptionPane.YES_OPTION) {
+        mCitas.eliminarCita(idCitaSeleccionada);
 
-            mBarberos.eliminarBarbero(id);
+        JOptionPane.showMessageDialog(this, "Cita eliminada correctamente");
 
-            mBarberos.llenarTabla(tblBarberos, "");
-            mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
-        }
+        mCitas.llenarTabla(jTable1);
+        limpiarFormularioCita();
+    }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
-        tblBarberos.clearSelection();
-        txtNombre.requestFocus();
+   
+   limpiarFormularioCita();
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+ int fila = jTable1.getSelectedRow();
+
+    if (fila == -1) {
+        return;
+    }
+      idCitaSeleccionada = Integer.parseInt(jTable1.getValueAt(fila, 0).toString());
+
+    String cliente = jTable1.getValueAt(fila, 1).toString();
+    String barbero = jTable1.getValueAt(fila, 2).toString();
+    String servicio = jTable1.getValueAt(fila, 3).toString();
+    String fechaTexto = jTable1.getValueAt(fila, 4).toString();
+    String hora = jTable1.getValueAt(fila, 5).toString();
+    String estado = jTable1.getValueAt(fila, 6).toString();
+
+    // Como la tabla muestra nombres, buscamos en los combos por texto
+    seleccionarComboPorTexto(cbCitCliente, cliente);
+    seleccionarComboPorTexto(cbCitBarbero, barbero);
+    seleccionarComboPorTexto(cbCitServicio, servicio);
+
+    try {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha = formato.parse(fechaTexto);
+        jDateChooser1.setDate(fecha);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar la fecha de la cita");
+    }
+
+    jTextField1.setText(hora);
+    cbCitEstado.setSelectedItem(estado);
+    
+    }//GEN-LAST:event_jTable1MouseClicked
+
+private void seleccionarComboPorTexto(javax.swing.JComboBox<String> combo, String texto) {
+    for (int i = 0; i < combo.getItemCount(); i++) {
+        String item = combo.getItemAt(i);
+
+        if (item != null && item.contains(" - " + texto)) {
+            combo.setSelectedIndex(i);
+            return;
+        }
+    }
+}
+
+    private int obtenerIdCombo(javax.swing.JComboBox<String> combo) {
+    String item = (String) combo.getSelectedItem();
+
+    if (item == null || item.equals("Seleccione...")) {
+        return -1;
+    }
+
+    String[] partes = item.split(" - ");
+    return Integer.parseInt(partes[0]);
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -339,13 +488,11 @@ public class PnlCitas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
+

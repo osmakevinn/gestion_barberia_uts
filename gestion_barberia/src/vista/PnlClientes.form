@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -61,12 +61,12 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtCedula" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="txtCliCedula" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtTelefono" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="txtCliTelefono" min="-2" pref="98" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
@@ -81,12 +81,12 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtEmail" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="txtCliEmail" min="-2" pref="215" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtNombre" min="-2" pref="216" max="-2" attributes="0"/>
+                                  <Component id="txtCliNombre" min="-2" pref="216" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="123" max="32767" attributes="0"/>
@@ -107,29 +107,29 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCliCedula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCliTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCliNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCliEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
@@ -169,15 +169,15 @@
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCedula">
+        <Component class="javax.swing.JTextField" name="txtCliCedula">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNombre">
+        <Component class="javax.swing.JTextField" name="txtCliNombre">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtEmail">
+        <Component class="javax.swing.JTextField" name="txtCliEmail">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono">
+        <Component class="javax.swing.JTextField" name="txtCliTelefono">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCliTelefonoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnActualizar">
@@ -298,10 +298,15 @@
               </TableColumnModel>
             </Property>
             <Property name="showGrid" type="boolean" value="false"/>
+            <Property name="showHorizontalLines" type="boolean" value="true"/>
+            <Property name="showVerticalLines" type="boolean" value="true"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblClientesMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

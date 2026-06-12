@@ -3,16 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package vista;
+import control.BarberosDAO;
+import javax.swing.JOptionPane;
+import Metodos.Msesion;
 
 /**
  *
  * @author osmakevinn
  */
+
 public class PnlConfiguracion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PnlConfiguracion
-     */
+    private BarberosDAO dao = new BarberosDAO();
+
     public PnlConfiguracion() {
         initComponents();
     }
@@ -27,7 +30,6 @@ public class PnlConfiguracion extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnBackup = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -36,13 +38,10 @@ public class PnlConfiguracion extends javax.swing.JPanel {
         txtConfNueva = new javax.swing.JPasswordField();
         txtConfConfirmar = new javax.swing.JPasswordField();
         btnActualizarPassword = new javax.swing.JButton();
+        comboTema = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONFIGURACIÓN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
-
-        btnBackup.setBackground(new java.awt.Color(255, 51, 51));
-        btnBackup.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBackup.setForeground(new java.awt.Color(255, 255, 255));
-        btnBackup.setText("Generar Respaldo de Base de Datos");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Contraseña Actual:");
@@ -56,53 +55,81 @@ public class PnlConfiguracion extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Cambio de contraseña:");
 
-        txtConfActual.setText("jPasswordField1");
+        txtConfActual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConfActualActionPerformed(evt);
+            }
+        });
 
-        txtConfNueva.setText("jPasswordField1");
-
-        txtConfConfirmar.setText("jPasswordField1");
+        txtConfNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConfNuevaActionPerformed(evt);
+            }
+        });
 
         btnActualizarPassword.setBackground(new java.awt.Color(51, 153, 255));
         btnActualizarPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnActualizarPassword.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarPassword.setText("Actualizar Contraseña");
+        btnActualizarPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarPasswordActionPerformed(evt);
+            }
+        });
+
+        comboTema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Oscuro", "Claro" }));
+        comboTema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTemaActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Tema:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBackup)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(57, 57, 57)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)))
                         .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtConfNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtConfActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtConfConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(151, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnActualizarPassword)
-                .addGap(198, 198, 198))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtConfActual)
+                            .addComponent(txtConfNueva)
+                            .addComponent(txtConfConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnActualizarPassword)
+                        .addGap(57, 57, 57)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(33, 33, 33)
+                .addComponent(comboTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(comboTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel1)
                             .addComponent(txtConfActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -114,9 +141,7 @@ public class PnlConfiguracion extends javax.swing.JPanel {
                     .addComponent(txtConfConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addComponent(btnActualizarPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
-                .addComponent(btnBackup)
-                .addGap(45, 45, 45))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -131,14 +156,97 @@ public class PnlConfiguracion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtConfNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfNuevaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConfNuevaActionPerformed
+
+    private void comboTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTemaActionPerformed
+        try {
+
+            String tema = comboTema.getSelectedItem().toString();
+
+            if (tema.equals("Oscuro")) {
+
+                javax.swing.UIManager.setLookAndFeel(
+                        new com.formdev.flatlaf.FlatDarkLaf()
+                );
+
+            } else if (tema.equals("Claro")) {
+
+                javax.swing.UIManager.setLookAndFeel(
+                        new com.formdev.flatlaf.FlatLightLaf()
+                );
+
+            } else {
+                return;
+            }
+
+            java.awt.Window ventana
+                    = (java.awt.Window) javax.swing.SwingUtilities
+                            .getWindowAncestor(this);
+
+            javax.swing.SwingUtilities.updateComponentTreeUI(ventana);
+
+            ventana.pack();
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+    }//GEN-LAST:event_comboTemaActionPerformed
+
+    private void txtConfActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfActualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConfActualActionPerformed
+
+    private void btnActualizarPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPasswordActionPerformed
+        String actual = new String(txtConfActual.getPassword()).trim();
+        String nueva = new String(txtConfNueva.getPassword()).trim();
+        String confirmar = new String(txtConfConfirmar.getPassword()).trim();
+
+        if (actual.isEmpty() || nueva.isEmpty() || confirmar.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Complete todos los campos");
+            return;
+        }
+
+        if (!nueva.equals(confirmar)) {
+            JOptionPane.showMessageDialog(this,
+                    "Las contraseñas no coinciden");
+            return;
+        }
+
+        boolean ok = dao.actualizarPassword(
+                Msesion.usuarioActual,
+                actual,
+                nueva);
+
+        if (ok) {
+
+            JOptionPane.showMessageDialog(this,
+                    "Contraseña actualizada correctamente");
+
+            txtConfActual.setText("");
+            txtConfNueva.setText("");
+            txtConfConfirmar.setText("");
+
+        } else {
+
+            JOptionPane.showMessageDialog(this,
+                    "La contraseña actual es incorrecta");
+        }
+    }//GEN-LAST:event_btnActualizarPasswordActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarPassword;
-    private javax.swing.JButton btnBackup;
+    private javax.swing.JComboBox<String> comboTema;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtConfActual;
     private javax.swing.JPasswordField txtConfConfirmar;

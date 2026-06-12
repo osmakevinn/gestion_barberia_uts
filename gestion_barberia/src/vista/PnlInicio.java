@@ -15,16 +15,19 @@ public class PnlInicio extends javax.swing.JPanel {
     
     
     public PnlInicio() {
-        
         initComponents();
         estilos();
-        
-               
-        // ===== CARGAR DATOS DEL DASHBOARD =====
-        lblTotalClientes.setText(
-                String.valueOf(md.totalClientes())
-        );
-        
+
+        try {
+            lblTotalClientes.setText(String.valueOf(md.totalClientes()));
+            lblTotalBarberos.setText(String.valueOf(md.totalBarberos()));
+            lblTotalCitas.setText(String.valueOf(md.totalCitasHoy()));
+            lblTotalServicios.setText(String.valueOf(md.totalServicios()));
+
+            cargarTablaProximasCitas();
+        } catch (Exception e) {
+            System.out.println("Nota: Implementar métodos en MetodosBarberos: " + e.getMessage());
+        }
     }
     
     private void estilos() {
@@ -42,6 +45,25 @@ public class PnlInicio extends javax.swing.JPanel {
         pnlServicios.setBackground(new java.awt.Color(45, 45, 45));
 
     }
+    
+    private void cargarTablaProximasCitas() {
+        // Solo se ejecutará si ya creaste la tabla 'tblProximasCitas' en el diseño
+        if (tblProximasCitas != null) {
+            javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblProximasCitas.getModel();
+            modelo.setRowCount(0);
+
+            try {
+                java.util.List<Object[]> lista = md.listarProximasCitas();
+                if (lista != null) {
+                    for (Object[] fila : lista) {
+                        modelo.addRow(fila);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Error al cargar filas de citas: " + e.getMessage());
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +74,8 @@ public class PnlInicio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         pnlPrincipal = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         pnlClientes = new javax.swing.JPanel();
@@ -69,14 +93,30 @@ public class PnlInicio extends javax.swing.JPanel {
         lblTotalServicios = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblProximasCitas = new javax.swing.JTable();
 
-        pnlPrincipal.setBackground(new java.awt.Color(35, 35, 35));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         pnlPrincipal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inicio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("NSimSun", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("NSimSun", 1, 24)); // NOI18N
         jLabel5.setText("Bienvenido, ");
 
         pnlClientes.setBackground(new java.awt.Color(45, 45, 45));
+        pnlClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlClientes.setOpaque(false);
         pnlClientes.setPreferredSize(new java.awt.Dimension(200, 150));
 
         lblTituloClientes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -100,7 +140,7 @@ public class PnlInicio extends javax.swing.JPanel {
                     .addGroup(pnlClientesLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(lblTotalClientes)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         pnlClientesLayout.setVerticalGroup(
             pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,10 +151,12 @@ public class PnlInicio extends javax.swing.JPanel {
                 .addComponent(lblTotalClientes)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel2)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pnlCitas.setBackground(new java.awt.Color(45, 45, 45));
+        pnlCitas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlCitas.setOpaque(false);
         pnlCitas.setPreferredSize(new java.awt.Dimension(200, 150));
 
         lblTituloCitas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -128,9 +170,9 @@ public class PnlInicio extends javax.swing.JPanel {
         pnlCitasLayout.setHorizontalGroup(
             pnlCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCitasLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(lblTituloCitas)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(pnlCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlCitasLayout.createSequentialGroup()
                     .addGap(63, 63, 63)
@@ -142,7 +184,7 @@ public class PnlInicio extends javax.swing.JPanel {
             .addGroup(pnlCitasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloCitas)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(pnlCitasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlCitasLayout.createSequentialGroup()
                     .addGap(48, 48, 48)
@@ -151,6 +193,8 @@ public class PnlInicio extends javax.swing.JPanel {
         );
 
         pnlBarberos.setBackground(new java.awt.Color(45, 45, 45));
+        pnlBarberos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlBarberos.setOpaque(false);
         pnlBarberos.setPreferredSize(new java.awt.Dimension(200, 150));
 
         lblTituloBarberos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -166,7 +210,7 @@ public class PnlInicio extends javax.swing.JPanel {
             .addGroup(pnlBarberosLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblTituloBarberos)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(pnlBarberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBarberosLayout.createSequentialGroup()
                     .addGap(63, 63, 63)
@@ -178,7 +222,7 @@ public class PnlInicio extends javax.swing.JPanel {
             .addGroup(pnlBarberosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloBarberos)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(pnlBarberosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlBarberosLayout.createSequentialGroup()
                     .addGap(48, 48, 48)
@@ -187,6 +231,8 @@ public class PnlInicio extends javax.swing.JPanel {
         );
 
         pnlServicios.setBackground(new java.awt.Color(45, 45, 45));
+        pnlServicios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlServicios.setOpaque(false);
         pnlServicios.setPreferredSize(new java.awt.Dimension(200, 150));
 
         lblTituloServicios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -214,7 +260,7 @@ public class PnlInicio extends javax.swing.JPanel {
             .addGroup(pnlServiciosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloServicios)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlServiciosLayout.createSequentialGroup()
                     .addGap(48, 48, 48)
@@ -225,25 +271,51 @@ public class PnlInicio extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Próximas citas:");
 
+        tblProximasCitas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cliente", "Barbero", "Hora", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblProximasCitas.setRowSelectionAllowed(false);
+        tblProximasCitas.setShowHorizontalLines(true);
+        tblProximasCitas.setShowVerticalLines(true);
+        jScrollPane2.setViewportView(tblProximasCitas);
+
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
         pnlPrincipal.setLayout(pnlPrincipalLayout);
         pnlPrincipalLayout.setHorizontalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrincipalLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
-                        .addComponent(pnlBarberos, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(pnlServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
-                        .addComponent(pnlClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator1))
-                .addContainerGap(427, Short.MAX_VALUE))
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel5)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
+                            .addComponent(pnlBarberos, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                            .addComponent(pnlServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrincipalLayout.createSequentialGroup()
+                            .addComponent(pnlClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlCitas, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSeparator1)))
+                .addContainerGap(339, Short.MAX_VALUE))
         );
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,20 +334,24 @@ public class PnlInicio extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -284,7 +360,10 @@ public class PnlInicio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTituloBarberos;
     private javax.swing.JLabel lblTituloCitas;
     private javax.swing.JLabel lblTituloClientes;
@@ -298,5 +377,6 @@ public class PnlInicio extends javax.swing.JPanel {
     private javax.swing.JPanel pnlClientes;
     private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JPanel pnlServicios;
+    private javax.swing.JTable tblProximasCitas;
     // End of variables declaration//GEN-END:variables
 }
