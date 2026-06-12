@@ -6,6 +6,7 @@ package vista;
 
 import Metodos.Mlogin;
 import javax.swing.JOptionPane;
+import Metodos.Msesion;
 /**
  *
  * @author osmakevinn
@@ -13,10 +14,23 @@ import javax.swing.JOptionPane;
 public class FrmLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
-private Mlogin mLogin = new Mlogin();
+    private Mlogin mLogin = new Mlogin();
+    
    
     public FrmLogin() {
         initComponents();
+        
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Login.png")).getImage());
+        
+        txtUsuario.putClientProperty(
+                "JTextField.placeholderText",
+                "👤 Usuario"
+        );
+
+        txtPassword.putClientProperty(
+                "JTextField.placeholderText",
+                "🔒 Contraseña"
+        );
     }
 
     /**
@@ -33,15 +47,23 @@ private Mlogin mLogin = new Mlogin();
         txtUsuario = new javax.swing.JTextField();
         btnIniciarSesion = new javax.swing.JToggleButton();
         txtPassword = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        FrmLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INICIAR SESIÓN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        FrmLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/log-in.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Login2.png"))); // NOI18N
 
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setToolTipText("");
+        txtUsuario.setName(""); // NOI18N
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
 
         btnIniciarSesion.setBackground(new java.awt.Color(0, 132, 255));
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
@@ -52,11 +74,19 @@ private Mlogin mLogin = new Mlogin();
             }
         });
 
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Bienvenido");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3.setText("Inicia sesión para continuar");
 
         javax.swing.GroupLayout FrmLoginLayout = new javax.swing.GroupLayout(FrmLogin);
         FrmLogin.setLayout(FrmLoginLayout);
@@ -65,26 +95,35 @@ private Mlogin mLogin = new Mlogin();
             .addGroup(FrmLoginLayout.createSequentialGroup()
                 .addGroup(FrmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FrmLoginLayout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(jLabel2))
-                    .addGroup(FrmLoginLayout.createSequentialGroup()
                         .addGap(229, 229, 229)
                         .addGroup(FrmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                             .addComponent(txtUsuario)
-                            .addComponent(txtPassword))))
-                .addContainerGap(257, Short.MAX_VALUE))
+                            .addComponent(txtPassword)))
+                    .addGroup(FrmLoginLayout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addGroup(FrmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)))
+                    .addGroup(FrmLoginLayout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel3)))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         FrmLoginLayout.setVerticalGroup(
             FrmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrmLoginLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel2)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(33, 33, 33)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96))
         );
@@ -93,7 +132,9 @@ private Mlogin mLogin = new Mlogin();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FrmLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(FrmLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,20 +160,28 @@ private Mlogin mLogin = new Mlogin();
 
     boolean acceso = mLogin.validarLogin(usuario, password);
 
-    if (acceso) {
-        JOptionPane.showMessageDialog(this, "Bienvenido al sistema");
+        if (acceso) {
 
-        FrmPrincipal principal = new FrmPrincipal();
-        principal.setVisible(true);
+            Msesion.usuarioActual = usuario;
 
-        this.dispose();
-    } else {
+            JOptionPane.showMessageDialog(this,
+                    "Bienvenido al sistema");
+
+            FrmPrincipal principal = new FrmPrincipal();
+            principal.setVisible(true);
+
+            this.dispose();
+        } else {
         JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
 
         txtPassword.setText("");
         txtPassword.requestFocus();
     }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,16 +199,6 @@ private Mlogin mLogin = new Mlogin();
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
         //</editor-fold>
 
         /* Create and display the form */
@@ -169,7 +208,9 @@ private Mlogin mLogin = new Mlogin();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FrmLogin;
     private javax.swing.JToggleButton btnIniciarSesion;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

@@ -18,17 +18,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
      * Creates new form FrmPrincipal
      */
     public FrmPrincipal() {
-        initComponents(); // Esto lo dejas tal cual
+        initComponents();
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Login.png")).getImage());
         setTitle("Gestión Barberia");
-
-        // --- MEJORAS VISUALES PREMIUM ---
-        btnInicio.setContentAreaFilled(false);
-        btnBarberos.setContentAreaFilled(false);
-        btnClientes.setContentAreaFilled(false);
-        btnCitas.setContentAreaFilled(false);
-        btnServicios.setContentAreaFilled(false);
-        btnConfiguracion.setContentAreaFilled(false);
-        btnSalir.setContentAreaFilled(false);
 
         btnInicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnBarberos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -37,8 +29,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnServicios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnConfiguracion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        
-        // Aplicamos el formato plano
+
         configurarEstiloMenu(btnInicio);
         configurarEstiloMenu(btnBarberos);
         configurarEstiloMenu(btnClientes);
@@ -48,9 +39,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         configurarEstiloMenu(btnSalir);
 
         mostrarPanel(new PnlInicio());
-        
-        // Dejamos marcado solo el inicio al arrancar
+
         btnInicio.setSelected(true);
+        btnInicio.setOpaque(true);
+        btnInicio.setBackground(new java.awt.Color(90, 90, 90));
     }
         
     private void mostrarPanel(JPanel p){
@@ -65,54 +57,57 @@ public class FrmPrincipal extends javax.swing.JFrame {
     
     
     private void configurarEstiloMenu(javax.swing.JButton boton) {
-
-        java.awt.Color colorNormal = new java.awt.Color(48, 47, 47);
-        java.awt.Color colorHover = new java.awt.Color(70, 70, 70);
-        java.awt.Color colorSeleccionado = new java.awt.Color(90, 90, 90);
-
         boton.setFocusPainted(false);
         boton.setBorderPainted(false);
-        boton.setContentAreaFilled(true);
-        boton.setOpaque(true);
+        boton.setContentAreaFilled(false);
+        boton.setOpaque(false);
 
-        boton.setBackground(colorNormal);
+        boton.putClientProperty("JButton.buttonType", "toolBarButton");
+
         boton.setForeground(java.awt.Color.WHITE);
 
-        // EFECTO HOVER
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
-
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-
                 if (!boton.isSelected()) {
-                    boton.setBackground(colorHover);
+                    boton.setOpaque(true);
+
+                    
+                    if (com.formdev.flatlaf.FlatLaf.isLafDark()) {
+                        boton.setBackground(new java.awt.Color(70, 70, 70)); // Hover oscuro
+                    } else {
+                        boton.setBackground(new java.awt.Color(180, 200, 220, 100)); // Hover claro sutil y estético
+                    }
                 }
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
-
                 if (!boton.isSelected()) {
-                    boton.setBackground(colorNormal);
+                    boton.setOpaque(false);
                 }
             }
         });
 
-        // EFECTO SELECCIONADO
         boton.addActionListener(e -> {
-
             resetearFormatoBotones();
 
-            btnInicio.setBackground(colorNormal);
-            btnBarberos.setBackground(colorNormal);
-            btnClientes.setBackground(colorNormal);
-            btnCitas.setBackground(colorNormal);
-            btnServicios.setBackground(colorNormal);
-            btnConfiguracion.setBackground(colorNormal);
-            btnSalir.setBackground(colorNormal);
+            btnInicio.setOpaque(false);
+            btnBarberos.setOpaque(false);
+            btnClientes.setOpaque(false);
+            btnCitas.setOpaque(false);
+            btnServicios.setOpaque(false);
+            btnConfiguracion.setOpaque(false);
+            btnSalir.setOpaque(false);
 
             boton.setSelected(true);
-            boton.setBackground(colorSeleccionado);
+            boton.setOpaque(true);
+
+            if (com.formdev.flatlaf.FlatLaf.isLafDark()) {
+                boton.setBackground(new java.awt.Color(90, 90, 90)); 
+            } else {
+                boton.setBackground(new java.awt.Color(140, 170, 200)); 
+            }
         });
     }
 
@@ -151,18 +146,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(48, 47, 47));
-
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/barber-pole.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("MENU");
 
-        btnInicio.setBackground(new java.awt.Color(48, 47, 47));
         btnInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/home.png"))); // NOI18N
         btnInicio.setText("   Inicio");
+        btnInicio.setBorder(null);
+        btnInicio.setOpaque(true);
         btnInicio.setSelected(true);
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,10 +164,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnBarberos.setBackground(new java.awt.Color(48, 47, 47));
         btnBarberos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnBarberos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hairdresser.png"))); // NOI18N
         btnBarberos.setText("   Gestión Barberos");
+        btnBarberos.setBorder(null);
+        btnBarberos.setOpaque(true);
         btnBarberos.setSelected(true);
         btnBarberos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,10 +176,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnClientes.setBackground(new java.awt.Color(48, 47, 47));
         btnClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/client.png"))); // NOI18N
         btnClientes.setText("   Clientes");
+        btnClientes.setBorder(null);
+        btnClientes.setOpaque(true);
         btnClientes.setSelected(true);
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,10 +188,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnCitas.setBackground(new java.awt.Color(48, 47, 47));
         btnCitas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/schedule.png"))); // NOI18N
         btnCitas.setText("   Citas");
+        btnCitas.setBorder(null);
+        btnCitas.setOpaque(true);
         btnCitas.setSelected(true);
         btnCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,10 +200,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnServicios.setBackground(new java.awt.Color(48, 47, 47));
         btnServicios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/barber.png"))); // NOI18N
         btnServicios.setText("   Servicios");
+        btnServicios.setBorder(null);
+        btnServicios.setOpaque(true);
         btnServicios.setSelected(true);
         btnServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,10 +212,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnConfiguracion.setBackground(new java.awt.Color(48, 47, 47));
         btnConfiguracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cogwheel.png"))); // NOI18N
         btnConfiguracion.setText("   Configuración");
+        btnConfiguracion.setBorder(null);
+        btnConfiguracion.setOpaque(true);
         btnConfiguracion.setSelected(true);
         btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,10 +224,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnSalir.setBackground(new java.awt.Color(48, 47, 47));
         btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salida.png"))); // NOI18N
         btnSalir.setText("   Salir");
+        btnSalir.setBorder(null);
+        btnSalir.setOpaque(true);
         btnSalir.setSelected(true);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,13 +288,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        content.setBackground(new java.awt.Color(25, 25, 25));
-
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 813, Short.MAX_VALUE)
+            .addGap(0, 847, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,23 +319,28 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         mostrarPanel(new PnlClientes());
+        btnClientes.putClientProperty("JButton.buttonType", "toolBarButton");
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
         mostrarPanel(new PnlCitas());
+        btnCitas.putClientProperty("JButton.buttonType", "toolBarButton");
     }//GEN-LAST:event_btnCitasActionPerformed
 
     private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
         mostrarPanel(new PnlServicios());
+        btnServicios.putClientProperty("JButton.buttonType", "toolBarButton");
     }//GEN-LAST:event_btnServiciosActionPerformed
 
     private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
        mostrarPanel(new PnlConfiguracion());
+       btnConfiguracion.putClientProperty("JButton.buttonType", "toolBarButton");
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
     private void btnBarberosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarberosActionPerformed
         resetearFormatoBotones(); 
         mostrarPanel(new PnlBarberos());
+        btnBarberos.putClientProperty("JButton.buttonType", "toolBarButton");
     }//GEN-LAST:event_btnBarberosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -352,11 +355,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     if (respuesta == javax.swing.JOptionPane.YES_OPTION) {
         System.exit(0); // Cierra completamente la aplicación
     }
+    btnSalir.putClientProperty("JButton.buttonType", "toolBarButton");
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         resetearFormatoBotones(); // Resetea todos a transparentes
         mostrarPanel(new PnlInicio()); // Carga tu panel de inicio
+        btnInicio.putClientProperty("JButton.buttonType", "toolBarButton");
     }//GEN-LAST:event_btnInicioActionPerformed
 
     /**

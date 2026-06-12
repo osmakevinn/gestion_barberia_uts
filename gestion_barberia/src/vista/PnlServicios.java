@@ -119,6 +119,8 @@ protected void cargarDatosIniciales() {
                 return canEdit [columnIndex];
             }
         });
+        tblServicios.setShowHorizontalLines(true);
+        tblServicios.setShowVerticalLines(true);
         tblServicios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblServiciosMouseClicked(evt);

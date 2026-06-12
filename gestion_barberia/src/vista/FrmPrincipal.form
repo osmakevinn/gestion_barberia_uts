@@ -39,11 +39,6 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="2f" green="2f" red="30" type="rgb"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -128,9 +123,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnInicio">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="2f" red="30" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
@@ -138,6 +130,10 @@
               <Image iconType="3" name="/imagenes/home.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Inicio"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -146,9 +142,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBarberos">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="2f" red="30" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
@@ -156,6 +149,10 @@
               <Image iconType="3" name="/imagenes/hairdresser.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Gesti&#xf3;n Barberos"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -164,9 +161,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnClientes">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="2f" red="30" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
@@ -174,6 +168,10 @@
               <Image iconType="3" name="/imagenes/client.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Clientes"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -182,9 +180,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCitas">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="2f" red="30" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
@@ -192,6 +187,10 @@
               <Image iconType="3" name="/imagenes/schedule.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Citas"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -200,9 +199,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnServicios">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="2f" red="30" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
@@ -210,6 +206,10 @@
               <Image iconType="3" name="/imagenes/barber.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Servicios"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -218,9 +218,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnConfiguracion">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="2f" red="30" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
@@ -228,6 +225,10 @@
               <Image iconType="3" name="/imagenes/cogwheel.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Configuraci&#xf3;n"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -236,9 +237,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="2f" red="30" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
@@ -246,6 +244,10 @@
               <Image iconType="3" name="/imagenes/salida.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Salir"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -255,16 +257,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="content">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="19" green="19" red="19" type="rgb"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="813" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="847" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

@@ -83,6 +83,7 @@ public class PnlCitas extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GESTIÓN CITAS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        jPanel1.setOpaque(false);
 
         cbCitBarbero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +110,7 @@ public class PnlCitas extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Estado:");
 
+        jDateChooser1.setForeground(new java.awt.Color(255, 255, 255));
         jDateChooser1.setDateFormatString("yyyy-MM-dd");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -165,6 +167,8 @@ public class PnlCitas extends javax.swing.JPanel {
                 "ID", "Cliente", "Barbero", "Servicio", "Fecha", "Hora", "Estado"
             }
         ));
+        jTable1.setShowHorizontalLines(true);
+        jTable1.setShowVerticalLines(true);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);

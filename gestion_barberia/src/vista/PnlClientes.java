@@ -198,6 +198,8 @@ public class PnlClientes extends PanelCrudBase {
             }
         });
         tblClientes.setShowGrid(false);
+        tblClientes.setShowHorizontalLines(true);
+        tblClientes.setShowVerticalLines(true);
         tblClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblClientesMouseClicked(evt);

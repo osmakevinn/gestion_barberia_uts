@@ -96,7 +96,23 @@ public class MetodosBarberos {
     
     public int totalClientes() {
 
-    return dao.totalClientes();
+    return dao.totalClientes();}
+    
+   
+    public int totalBarberos() {
+        return dao.totalBarberos();
+    }
 
-}
+    public int totalCitasHoy() {
+        return dao.totalCitasHoy();
+    }
+
+    public int totalServicios() {
+        return dao.totalServicios();
+    }
+
+    public java.util.List<Object[]> listarProximasCitas() {
+        return dao.listarProximasCitas();
+    }
+
 }

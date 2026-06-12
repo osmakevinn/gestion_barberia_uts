@@ -89,12 +89,11 @@ Metodos.MetodosBarberos mBarberos = new Metodos.MetodosBarberos();
         btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(51, 51, 51));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GESTIÓN BARBEROS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
-        tblBarberos.setForeground(new java.awt.Color(0, 0, 0));
         tblBarberos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -151,19 +150,19 @@ Metodos.MetodosBarberos mBarberos = new Metodos.MetodosBarberos();
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("ID");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Comisión (%)");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Estado");
 
         txtId.setEditable(false);
@@ -249,10 +248,10 @@ Metodos.MetodosBarberos mBarberos = new Metodos.MetodosBarberos();
                             .addComponent(txtId))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnActualizar)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -304,23 +303,45 @@ Metodos.MetodosBarberos mBarberos = new Metodos.MetodosBarberos();
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
        if (txtId.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, selecciona un barbero de la tabla");
+        javax.swing.JOptionPane.showMessageDialog(
+            javax.swing.SwingUtilities.getWindowAncestor(this), 
+            "Por favor, selecciona un barbero de la tabla", 
+            "Aviso", 
+            javax.swing.JOptionPane.WARNING_MESSAGE
+        );
         return;
     }
 
     try {
-
+        
         int id = Integer.parseInt(txtId.getText());
         String nombre = txtNombre.getText();
         double comision = Double.parseDouble(txtComision.getText());
         String estado = cbxEstado.getSelectedItem().toString();
 
+        
         mBarberos.actualizarBarbero(id, nombre, comision, estado);
+        
+        
+        javax.swing.JOptionPane.showMessageDialog(
+            javax.swing.SwingUtilities.getWindowAncestor(this), 
+            "¡Barbero actualizado correctamente!", 
+            "Éxito", 
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+
+        
         mBarberos.llenarTabla(tblBarberos, "");
         mBarberos.limpiarFormulario(txtId, txtNombre, txtComision, cbxEstado);
         
     } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Error: La comisión debe ser un número válido");
+      
+        javax.swing.JOptionPane.showMessageDialog(
+            javax.swing.SwingUtilities.getWindowAncestor(this), 
+            "Error: La comisión debe ser un número válido (ejemplo: 10.5)", 
+            "Error de Formato", 
+            javax.swing.JOptionPane.ERROR_MESSAGE
+        );
     }
 
     }//GEN-LAST:event_btnActualizarActionPerformed
