@@ -14,7 +14,7 @@ Un moderno sistema de escritorio (Desktop App) desarrollado en **Java SE** con u
 | :--- | :--- |
 | **Institución** | Unidades Tecnológicas de Santander (UTS) |
 | **Asignatura** | Tecnología de Desarrollo de Sistemas Informáticos |
-| **Periodo** | I Semestre 2026 |
+| **Periodo** | III Semestre 2026 |
 | **Docente** | Mag. Carlos Adolfo Beltrán Castro |
 | **Desarrolladores** | • **Kevin Stewart Osma Bohada** (10053721360)<br>• **Jean Franco Rey Ardila** (1097782023) |
 
